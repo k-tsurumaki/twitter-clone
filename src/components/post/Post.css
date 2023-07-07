@@ -6,7 +6,6 @@
 
 .post--body {
   flex: 1;
-  padding: 10px;
 }
 
 .post--body > img {
@@ -18,6 +17,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }
 
 .post--headerDescription {
@@ -42,5 +46,5 @@
 }
 
 .post--avatar {
-  padding: 20px;
+  padding: 15px;
 }
