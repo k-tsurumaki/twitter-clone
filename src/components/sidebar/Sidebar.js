@@ -9,29 +9,34 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SidebarOption from "./SidebarOption";
+import { Button } from "@mui/material";
+import "./Sidebar.css";
 
 function Sidebar() {
   return (
     <div className="sidebar">
       {/* ツイッターアイコン */}
       <TwitterIcon className="sidebar--twitterIcon" />
- 
+
       {/* SidebarOption */}
-      <SidebarOption text="ホーム" Icon={HomeIcon} />
-      <SidebarOption text="話題を検索" Icon={SearchIcon} />
-      <SidebarOption text="通知" Icon={NotificationsNoneIcon} />
-      <SidebarOption text="メッセージ" Icon={MailOutlineIcon} />
-      <SidebarOption text="ブックマーク" Icon={BookmarkBorderIcon} />
-      <SidebarOption text="リスト" Icon={ListAltIcon} />
-      <SidebarOption text="プロフィール" Icon={PermIdentityIcon} />
-      <SidebarOption text="もっとみる" Icon={MoreHorizIcon} />
-      {/* SidebarOption */}
-      {/* SidebarOption */}
+      <SidebarOption text="Home" Icon={HomeIcon} />
+      <SidebarOption text="Explore" Icon={SearchIcon} />
+      <SidebarOption text="Notifications" Icon={NotificationsNoneIcon} />
+      <SidebarOption text="Messages" Icon={MailOutlineIcon} />
+      <SidebarOption text="Bookmarks" Icon={BookmarkBorderIcon} />
+      <SidebarOption text="Lists" Icon={ListAltIcon} />
+      <SidebarOption text="Profile" Icon={PermIdentityIcon} />
+      <SidebarOption text="More" Icon={MoreHorizIcon} />
       {/* SidebarOption */}
       {/* SidebarOption */}
       {/* SidebarOption */}
- 
+      {/* SidebarOption */}
+      {/* SidebarOption */}
+
       {/* ツイートボタン */}
+      <Button variant="outlined" className="sidebar--tweet" fullWidth>
+        tweet
+      </Button>
     </div>
   );
 }
