@@ -1,21 +1,54 @@
-import { Avatar, Button } from '@mui/material';
-import React from 'react'
-import "./TweetBox.css"
+import { Avatar, Button } from "@mui/material";
+import React, { useState } from "react";
+import "./TweetBox.css";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import db from "../../firebase";
 
 function TweetBox() {
+  const [tweetMessage, setTweetMessage] = useState("");
+  const [tweetImage, setTweetImage] = useState("");
+
+  const sendTweet = (e) => {
+    e.preventDefault();
+
+    addDoc(collection(db, "posts"), {
+      displayName: "プログラミング",
+      username: "KAZUKI",
+      verified: true,
+      text: tweetMessage,
+      avatar: "http://shincode.info/wp-content/uploads/2021/12/icon.png",
+      image: tweetImage,
+      timestamp: serverTimestamp(),
+    });
+
+    setTweetMessage("");
+    setTweetImage("");
+  };
+
   return (
     <div className="tweetBox">
       <form>
         <div className="tweetBox--input">
           <Avatar />
-          <input placeholder="Are you doing now?" type="text"></input>
+          <input
+            value={tweetMessage}
+            placeholder="Are you doing now?"
+            type="text"
+            onChange={(e) => setTweetMessage(e.target.value)}
+          ></input>
         </div>
         <input
+          value={tweetImage}
           className="tweetBox--imageInput"
           placeholder="Enter image URL"
           type="text"
+          onChange={(e) => setTweetImage(e.target.value)}
         ></input>
-        <Button className="tweetBox--tweetButton" type="submit">
+        <Button
+          className="tweetBox--tweetButton"
+          type="submit"
+          onClick={sendTweet}
+        >
           Tweet
         </Button>
       </form>
@@ -23,4 +56,4 @@ function TweetBox() {
   );
 }
 
-export default TweetBox
+export default TweetBox;
