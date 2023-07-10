@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TweetBox from "./TweetBox";
 import "./Timeline.css";
 import Post from "../post/Post";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import {
   collection,
   getDocs,
@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import FlipMove from "react-flip-move";
 
-function Timeline() {
+function Timeline({ isAuth }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,8 @@ function Timeline() {
     });
   }, []);
 
+  console.log(isAuth);
+
   return (
     <div className="timeline">
       {/* Header */}
@@ -34,17 +36,17 @@ function Timeline() {
         <h2 className="">Home</h2>
       </div>
       {/* TweetBox */}
-      <TweetBox />
+      {isAuth && <TweetBox />}
       {/* Post */}
       <FlipMove>
         {posts.map((post) => (
           <Post
-            key={post.text}
-            displayName={post.displayName}
-            username={post.username}
+            key={post.id}
+            displayName={post.auther.username}
+            username={post.auther.username}
             verified={post.verified}
             text={post.text}
-            avatar={post.avatar}
+            avatar={post.auther.icon}
             image={post.image}
           />
         ))}

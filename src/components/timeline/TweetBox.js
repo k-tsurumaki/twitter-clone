@@ -2,21 +2,23 @@ import { Avatar, Button } from "@mui/material";
 import React, { useState } from "react";
 import "./TweetBox.css";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import db from "../../firebase";
+import { auth, db } from "../../firebase";
 
 function TweetBox() {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
 
-  const sendTweet = (e) => {
+  const sendTweet = async (e) => {
     e.preventDefault();
 
-    addDoc(collection(db, "posts"), {
-      displayName: "プログラミング",
-      username: "KAZUKI",
+    await addDoc(collection(db, "posts"), {
+      auther: {
+        username: auth.currentUser.displayName,
+        id: auth.currentUser.uid,
+        icon: auth.currentUser.photoURL,
+      },
       verified: true,
       text: tweetMessage,
-      avatar: "http://shincode.info/wp-content/uploads/2021/12/icon.png",
       image: tweetImage,
       timestamp: serverTimestamp(),
     });

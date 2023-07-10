@@ -34,9 +34,9 @@ function Sidebar() {
       {/* SidebarOption */}
 
       {/* ツイートボタン */}
-      <Button variant="outlined" className="sidebar--tweet" fullWidth>
+      {/* <Button variant="outlined" className="sidebar--tweet" fullWidth>
         tweet
-      </Button>
+      </Button> */}
     </div>
   );
 }
